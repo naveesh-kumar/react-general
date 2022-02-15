@@ -1,0 +1,32 @@
+import React from 'react';
+import './style.css';
+import { Route, Routes, useLocation, Link } from 'react-router-dom';
+
+export default function App() {
+  return (
+    <div>
+      <div className="header">
+        <div className="navigation">
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/dashboard">Dashboard</NavLink>
+        </div>
+      </div>
+      <div className="main">
+        <Routes>
+          <Route path="/" element={<h2>Home page</h2>} />
+          <Route path="/dashboard" element={<h2>Dashboard page</h2>} />
+        </Routes>
+      </div>
+    </div>
+  );
+}
+
+function NavLink({ to, children }) {
+  let location = useLocation();
+  let isActive = location.pathname == to;
+  return (
+    <Link to={to} className={isActive ? 'nav-active' : ''}>
+      {children}
+    </Link>
+  );
+}
