@@ -1,6 +1,13 @@
 import React from 'react';
 import './style.css';
-import { Route, Routes, useLocation, Link, Outlet } from 'react-router-dom';
+import {
+  Route,
+  Routes,
+  useLocation,
+  Link,
+  Outlet,
+  useParams,
+} from 'react-router-dom';
 
 export default function App() {
   return (
@@ -21,29 +28,34 @@ export default function App() {
             element={
               <>
                 <h2>Users List</h2>
-                <div>
-                  <Outlet />
+                <div className="wrapper">
+                  {[...Array(15).keys()].map((item) => {
+                    return (
+                      <div className="navigation grid-one">
+                        <NavLink key={item} to={`user/${item + 1}`}>
+                          User {item + 1}
+                        </NavLink>
+                      </div>
+                    );
+                  })}
+                  <div>
+                    <Outlet />
+                  </div>
                 </div>
               </>
             }
           >
-            <Route
-              path=""
-              element={[...Array(15).keys()].map((item) => {
-                return (
-                  <div className="navigation">
-                    <NavLink key={item} to={'user/' + (item + 1)}>
-                      User {item + 1}
-                    </NavLink>
-                  </div>
-                );
-              })}
-            />
+            <Route path="user/:id" element={<UserDetail />} />
           </Route>
         </Routes>
       </div>
     </div>
   );
+}
+
+function UserDetail() {
+  let { id } = useParams();
+  return <div>User {id}</div>;
 }
 
 function NavLink({ to, children }) {
