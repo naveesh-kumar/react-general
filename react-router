@@ -20,7 +20,7 @@ let routeObj = [
     element: <Dashboard />,
   },
   {
-    path: '/users',
+    path: '/users/',
     element: <Users />,
     children: [
       {
@@ -39,7 +39,7 @@ export default function App() {
         <div className="navigation">
           <NavLink to="/">Home</NavLink>
           <NavLink to="/dashboard">Dashboard</NavLink>
-          <NavLink exact={true} to="/users">
+          <NavLink exact to="/users">
             Users
           </NavLink>
         </div>
@@ -96,8 +96,7 @@ function NavLink({ to, children, exact }) {
   if (exact) {
     let matchingRoutes = matchRoutes(routeObj, location.pathname);
     isActive = matchingRoutes.some((match) => {
-      console.log(match);
-      return match.pathname == location.pathname;
+      return match.pathname == to;
     });
   } else {
     isActive = location.pathname == useResolvedPath(to).pathname;
