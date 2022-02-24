@@ -1,0 +1,23 @@
+var hour = document.getElementById("hour");
+var min = document.getElementById("minute");
+var sec = document.getElementById("second");
+
+window.addEventListener("load", intervalFunc);
+
+function intervalFunc(){
+setInterval(()=>{
+ intervalHandler();
+},1000)
+}
+
+function intervalHandler(){
+let currentDate = new Date();
+let currentHour = currentDate.getHours();
+let currentMin = currentDate.getMinutes();
+let currentSec = currentDate.getSeconds();
+
+hour.innerText = currentHour;
+min.innerText = currentMin;
+sec.innerText = currentSec;
+
+}
