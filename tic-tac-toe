@@ -1,0 +1,82 @@
+//HTML
+<div id="table">
+   <div></div>
+   <div></div>
+   <div></div>
+   <div></div>
+   <div></div>
+   <div></div>
+   <div></div>
+   <div></div>
+   <div></div>
+</div>
+<div>
+  <button onClick="clearCells()">clear</button>
+</div>
+
+//CSS
+#table{
+  display:grid;
+  grid-template-columns:50px 50px 50px;
+  row-gap:2px;
+  column-gap:2px;
+}
+
+#table div{
+  padding:10px;
+  background-color:blue;
+  text-align:center;
+  color:white;
+  height: 20px;
+}
+
+//JAVASCRIPT
+var tabEle = document.getElementById("table");
+
+var newArr = Array.prototype.slice.call(tabEle.children);
+
+var clickCount = 0;
+
+newArr.forEach(ele=>{
+ele.addEventListener("click", (e)=>{eventHandler(e)})
+})
+
+function eventHandler(e){
+ if(!e.target.innerText){
+   clickCount++;
+   if(clickCount%2!=0){
+   e.target.innerText="X"
+   }else{
+   e.target.innerText="O";
+   }
+   checkBingo(e);
+ }
+}
+
+function checkBingo(e){
+ let cindex = newArr.indexOf(e.target);
+ let match = [[0,1,2],[0,3,6],[0,4,8],[1,4,7],[2,4,6],[2,5,8],[3,4,5],[6,7,8]];
+ 
+ let filteredMatch = match.filter(ar=>{
+ return ar.includes(cindex);
+ })
+ 
+ filteredMatch.forEach(ele=>{
+ if((newArr[ele[0]].innerText === newArr[ele[1]].innerText) && (newArr[ele[1]].innerText=== newArr[ele[2]].innerText)){
+ success(ele[0], ele[1], ele[2])
+ }
+ })
+}
+
+function success(...ar){
+ar.forEach((n)=>{
+ newArr[n].style.cssText="color:red"
+})
+}
+
+function clearCells(){
+newArr.forEach(ar=>{
+ar.innerText="";
+ar.style.cssText="color:white"
+})
+}
