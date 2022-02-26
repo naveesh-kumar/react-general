@@ -13,6 +13,8 @@
 <div>
   <button onClick="clearCells()">clear</button>
 </div>
+<div id="message">  
+</div>
 
 //CSS
 #table{
@@ -32,6 +34,7 @@
 
 //JAVASCRIPT
 var tabEle = document.getElementById("table");
+var msgEle = document.getElementById("message"); 
 
 var newArr = Array.prototype.slice.call(tabEle.children);
 
@@ -72,10 +75,13 @@ function success(...ar){
 ar.forEach((n)=>{
  newArr[n].style.cssText="color:red"
 })
+msgEle.innerText=`${newArr[ar[0]].innerText} has won`;
+setTimeout(clearCells,3000);
 }
 
 function clearCells(){
 clickCount=0;
+msgEle.innerText="";
 newArr.forEach(ar=>{
 ar.innerText="";
 ar.style.cssText="color:white"
