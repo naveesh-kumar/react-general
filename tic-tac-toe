@@ -75,6 +75,7 @@ ar.forEach((n)=>{
 }
 
 function clearCells(){
+clickCount=0;
 newArr.forEach(ar=>{
 ar.innerText="";
 ar.style.cssText="color:white"
