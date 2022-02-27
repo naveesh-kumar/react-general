@@ -86,6 +86,7 @@ setTimeout(clearCells,5000);
 
 function clearCells(){
 clickCount=0;
+isBingo=false;
 msgEle.innerText="";
 newArr.forEach(ar=>{
 ar.innerText="";
