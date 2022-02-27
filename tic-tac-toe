@@ -39,6 +39,7 @@ var msgEle = document.getElementById("message");
 var newArr = Array.prototype.slice.call(tabEle.children);
 
 var clickCount = 0;
+var isBingo=false;
 
 newArr.forEach(ele=>{
 ele.addEventListener("click", (e)=>{eventHandler(e)})
@@ -48,6 +49,7 @@ function eventHandler(e){
  if(!e.target.innerText){
    clickCount++;
    if(clickCount%2!=0){
+   
    e.target.innerText="X"
    }else{
    e.target.innerText="O";
@@ -67,6 +69,8 @@ function checkBingo(e){
  filteredMatch.forEach(ele=>{
  if((newArr[ele[0]].innerText === newArr[ele[1]].innerText) && (newArr[ele[1]].innerText=== newArr[ele[2]].innerText)){
  success(ele[0], ele[1], ele[2])
+ }else{
+ draw()
  }
  })
 }
@@ -76,7 +80,8 @@ ar.forEach((n)=>{
  newArr[n].style.cssText="color:red"
 })
 msgEle.innerText=`${newArr[ar[0]].innerText} has won`;
-setTimeout(clearCells,3000);
+isBingo=true;
+setTimeout(clearCells,5000);
 }
 
 function clearCells(){
@@ -86,4 +91,14 @@ newArr.forEach(ar=>{
 ar.innerText="";
 ar.style.cssText="color:white"
 })
+}
+
+function draw(){
+var allCellsFilled = newArr.every(ele=>{
+return ele.innerText!="";
+})
+if(allCellsFilled && !isBingo){
+ msgEle.innerText="Draw match";
+ setTimeout(clearCells,3000)
+}
 }
