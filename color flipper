@@ -1,0 +1,21 @@
+//HTML
+<div>
+  <h3>Background Color: <span id="color">Red</span></h3>
+  <button onclick=colorChanger()>Click me</button>
+</div>
+
+//CSS
+body{
+  background-color:red;
+}
+
+//JAVASCRIPT
+var colors = ["red", "green", "blue", "orange"];
+var colorSpecifier = document.getElementById("color");
+
+function colorChanger(){
+  let randomNumber = Math.floor(Math.random()*colors.length);
+  let color = colors[randomNumber];
+  document.body.style.cssText = `background-color:${color}`;
+  colorSpecifier.innerText = color;
+}
