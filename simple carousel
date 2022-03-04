@@ -1,0 +1,60 @@
+//HTML
+<div>
+<div class="profilecontainer">
+  
+</div>
+  <div class="profile">
+    <h3>Naveesh kumar V</h3>
+    <p>Mechanical Engineer</p>
+  </div>
+  
+  <div class="profile">
+    <h3>Swami Vivekananda</h3>
+    <p>Civil Engineer</p>
+  </div>
+  
+  <div class="profile">
+    <h3>Albert Einstein</h3>
+    <p>Marine Engineer</p>
+  </div>
+  
+  <button onclick="goNext()">Next</button>
+  <button onclick="goPrev()">Prev</button>
+</div>
+
+//CSS
+.profilecontainer{
+  width:100%;
+  background-color:tomato;
+  padding:10px;
+  text-align:center;
+  color:white;
+}
+
+.profile{
+  display:none;
+}
+
+//JAVASCRIPT
+var list = document.querySelectorAll(".profile");
+var profileArray = Array.prototype.slice.call(list);
+var profileContainer = document.querySelector(".profilecontainer");
+var currentProfile = 0;
+
+window.addEventListener("load", function(){
+profileContainer.innerHTML = profileArray[0].innerHTML;
+})
+
+function goNext(){
+if(currentProfile<profileArray.length-1){
+currentProfile++;
+profileContainer.innerHTML = profileArray[currentProfile].innerHTML;
+}
+}
+
+function goPrev(){
+if(currentProfile>0){
+currentProfile--;
+profileContainer.innerHTML = profileArray[currentProfile].innerHTML;
+}
+}
