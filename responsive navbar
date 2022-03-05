@@ -1,0 +1,68 @@
+//HTML
+<div>
+  <header id="header">
+    <h2>Mega Mart</h2>
+    <img id="svg" src="https://img.icons8.com/ios-glyphs/30/000000/menu--v1.png"/>
+    <div class="display-content" id="content">
+    <h4>Home</h4>
+    <h4>About</h4>
+    <h4>Contacts</h4>
+  </div>
+  </header>
+  <main>
+    <h5>This is a good feature to have on an ecommerce site </h5>
+  </main>
+</div>
+
+//CSS
+#header{
+  display:grid;
+  grid-template-columns:auto auto;
+  align-items:center;
+  justify-content:space-between;
+  padding:5px;
+}
+
+#header h2{
+  color:blue;
+}
+
+#header img{
+  cursor:pointer;
+}
+
+.display-content{
+  display:flex;
+  justify-content:space-between;
+  align-items: centre;
+}
+
+#content h4{
+  margin:0px 10px;
+}
+
+.no-display-content{
+  display:none;
+}
+
+//JAVASCRiPT
+var svg = document.getElementById('svg');
+var content = document.getElementById("content");
+
+svg.addEventListener("click", function(){
+content.classList.toggle("no-display-content");
+})
+
+window.addEventListener("load", displayNav);
+
+window.addEventListener("resize", displayNav);
+
+function displayNav(){
+if(window.innerWidth>=490){
+svg.classList.add("no-display-content");
+content.classList.remove("no-display-content")
+}else{
+svg.classList.remove("no-display-content");
+content.classList.add("no-display-content");
+}
+}
