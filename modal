@@ -1,0 +1,100 @@
+//HTML
+<div class="container" id="container">
+  <div class="modal">
+    <h1>Modal Project</h1>
+    <button id="open-modal">open modal</button>
+  </div>
+</div>
+<div id="content">
+  <h3>Modal Content</h3>
+  <img id="close" src="https://img.icons8.com/material-sharp/24/000000/delete-sign.png"/>
+</div>
+
+//CSS
+.container{
+  background-color:pink;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+}
+
+.modal, .modal-content{
+  width:400px;
+  height:175px;
+  background-color:white;
+  text-align:center;
+  box-shadow:1px 1px 10px 1px grey;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.modal{
+  flex-direction:column;
+}
+
+.modal h1{
+  letter-spacing:2px;
+  font-weight:bold;
+  font-family:"sans-serif";
+}
+
+.modal button{
+  background:blue;
+  padding:8px;
+  color:lightblue;
+  outline:none;
+  border:1px solid;
+  border-radius:6px;
+  cursor:pointer;
+  text-transform:capitalize;
+}
+
+.modal button:hover{
+  background:lightblue;
+  color:blue;
+}
+
+.modal-content{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-46%)
+}
+
+.modal-content img{
+  position:absolute;
+  height:15px;
+  top:10px;
+  right:10px;
+  cursor:pointer;
+}
+
+.modal-content-hide{
+  display:none;
+}
+
+.container-blur{
+  pointer-events:none;
+  opacity:0.5;
+}
+
+//JAVASCRIPT
+var openModalBtn = document.getElementById("open-modal");
+var modalContent = document.getElementById("content")
+var closeBtn = document.getElementById("close");
+var container = document.getElementById("container")
+
+openModalBtn.addEventListener("click", function(){
+ modalContent.classList.add("modal-content");
+ modalContent.classList.remove("modal-content-hide");
+ container.classList.add("container-blur");
+})
+
+closeBtn.addEventListener("click", function(){
+modalContent.classList.add("modal-content-hide");
+modalContent.classList.remove("modal-content");
+ container.classList.remove("container-blur");
+})
