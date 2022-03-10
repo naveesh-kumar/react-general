@@ -1,0 +1,70 @@
+//HTML
+<div class="container">
+  <div id="card">
+  <div id="question">
+    <h4>Do you accept all major credit cards?</h4>
+    <img onclick=clickHandler(event) src="https://img.icons8.com/external-tanah-basah-basic-outline-tanah-basah/15/000000/external-plus-essentials-tanah-basah-basic-outline-tanah-basah-2.png"/>
+  </div>
+  <p id="answer" class="no-display">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, deserunt. Ducimus voluptates expedita porro doloribus et debitis nobis quam voluptas, dolorum, sint officiis adipisci itaque nesciunt aliquam non id reprehenderit.</p>
+  </div>
+  <div id="card">
+  <div id="question">
+    <h4>Do you support local farmers?</h4>
+    <img onclick=clickHandler(event) src="https://img.icons8.com/external-tanah-basah-basic-outline-tanah-basah/15/000000/external-plus-essentials-tanah-basah-basic-outline-tanah-basah-2.png"/>
+  </div>
+    <p id="answer" class="no-display">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, deserunt. Ducimus voluptates expedita porro doloribus et debitis nobis quam voluptas, dolorum, sint officiis adipisci itaque nesciunt aliquam non id reprehenderit.</p>
+  </div>
+  <div id="card">
+  <div id="question">
+    <h4>Do you use organic ingredients?</h4>
+    <img onclick=clickHandler(event) src="https://img.icons8.com/external-tanah-basah-basic-outline-tanah-basah/15/000000/external-plus-essentials-tanah-basah-basic-outline-tanah-basah-2.png"/>
+  </div>
+    <p id="answer" class="no-display">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, deserunt. Ducimus voluptates expedita porro doloribus et debitis nobis quam voluptas, dolorum, sint officiis adipisci itaque nesciunt aliquam non id reprehenderit.</p>
+  </div>
+</div>
+
+//CSS
+.container{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+}
+
+#question{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  width:300px;
+  background:lightblue;
+  padding:0px 8px;
+  margin:10px 0;
+}
+
+#question img{
+  cursor:pointer;
+}
+
+#answer{
+  width:300px;
+  text-align:justify;
+}
+
+.no-display{
+  display:none;
+}
+
+//JAVASCRIPT
+var nodeList = document.querySelectorAll("#card");
+var cardArray = Array.prototype.slice.call(nodeList);
+
+function clickHandler(event){
+cardArray.forEach((card)=>{
+if(card===event.target.parentNode.parentNode){
+ card.childNodes[2].nextElementSibling.classList.toggle("no-display");
+ }else{
+  card.childNodes[2].nextElementSibling.classList.add("no-display");
+ }
+})
+}
