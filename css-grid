@@ -1,0 +1,54 @@
+ //HTML
+ <div class="container">
+  <header>Header</header>
+  <nav>Navigation</nav>
+  <main>Content</main>
+  <aside>Sidebar</aside>
+  <footer>Footer</footer>
+</div>
+
+//CSS
+*{
+  box-sizing:border-box;
+  padding:0px;
+  margin:0px;
+}
+
+.container{
+  height:100vh;
+  display:grid;
+  grid-template-areas:
+  "header header header"
+  'nav content aside'
+  'nav footer footer';
+  grid-template-columns:1fr 4fr 1fr;
+  grid-template-rows:80px 1fr 70px;
+}
+
+header, nav, aside, main, footer{
+  background:steelblue;
+  color:white;
+  padding:20px;
+  font-size:16px;
+  border:1px solid white;
+}
+
+header{
+  grid-area:header;
+}
+
+nav{
+  grid-area:nav;
+}
+
+main{
+  grid-area:content;
+}
+
+aside{
+  grid-area:aside;
+}
+
+footer{
+  grid-area:footer;
+}
