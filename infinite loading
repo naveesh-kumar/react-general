@@ -1,0 +1,74 @@
+//HTML
+<div class="container">
+  <div class="card">Card 1</div>
+  <div class="card">Card 2</div>
+  <div class="card">Card 3</div>
+  <div class="card">Card 4</div>
+  <div class="card">Card 5</div>
+  <div class="card">Card 6</div>
+  <div class="card">Card 7</div>
+  <div class="card">Card 8</div>
+  <div class="card">Card 9</div>
+  <div class="card">Card 10</div>
+  <div class="card">Card 11</div>
+  <div class="card">Card 12</div>
+  <div class="card">Card 13</div>
+  <div class="card">Card 14</div>
+  <div class="card">Card 15</div>
+</div>
+
+//CSS
+.card{
+  padding:20px;
+  border:1px solid black;
+  width:60px;
+  margin-bottom:10px;
+  border-radius:8px;
+  opacity:0;
+  transition:1000ms;
+  transform:translateX(100px);
+}
+
+.show{
+  opacity:1;
+  transform:translateX(0);
+}
+
+//JAVASCRIPT
+var cards = document.querySelectorAll(".card");
+
+var observer = new IntersectionObserver(entries=>{
+entries.forEach((entry)=>{
+entry.target.classList.toggle("show", entry.isIntersecting); 
+if(entry.isIntersecting) observer.unobserve(entry.target) 
+})
+},{
+threshold:0.5
+})
+
+var lastCardObserver = new IntersectionObserver((entries)=>{
+if(entries[0].isIntersecting){
+addCards();
+lastCardObserver.unobserve(entries[0].target);
+lastCardObserver.observe(document.querySelector(".card:last-child"));
+}
+})
+
+
+lastCardObserver.observe(document.querySelector(".card:last-child"))
+
+cards.forEach((card)=>{
+observer.observe(card);
+})
+
+var container = document.querySelector(".container");
+
+function addCards(){
+ for(var i=0; i<5; i++){
+ var card = document.createElement("div");
+ card.innerText = "New card";
+ card.classList.add("card");
+ observer.observe(card);
+ container.appendChild(card);
+ }
+}
